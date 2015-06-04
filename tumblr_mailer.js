@@ -1,9 +1,7 @@
 var fs = require("fs");
 
 var csvFile = fs.readFileSync("friend_list.csv", "utf8");
-
-var csv_data = csvParse(csvFile);
-console.log(csv_data);
+var emailTemplate = fs.readFileSync("email_template.html", "utf8");
 
 function csvParse(csvFile){
 	var contacts = csvFile.split("\n");
@@ -24,3 +22,18 @@ function csvParse(csvFile){
 	}
 	return contacts;
 }
+
+var csv_data = csvParse(csvFile);
+
+csv_data.forEach(function(row){
+	var firstName = row["firstName"];
+	var numMonthsSinceContact = row["numMonthsSinceContact"];
+
+	var templateCopy = emailTemplate;
+
+	templateCopy = templateCopy.replace(/FIRST_NAME/gi, firstName).replace(/NUM_MONTHS_SINCE_CONTACT/gi, numMonthsSinceContact);
+
+	console.log(templateCopy);
+});
+
+
