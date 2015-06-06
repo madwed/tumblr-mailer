@@ -11,8 +11,13 @@
     </p>
     <p>
       I've been blogging about my experiences at Fullstack on my blog. 
-      Check out my new posts here: 
-      <a href="http://codefishandchips.tumblr.com">My Blog</a>
+      Check out my latest posts: 
+      <ul>
+      <% for(var i = 0; i < latestPosts.length; i++) { %>
+        <li><a href="<%= latestPosts[i].short_url %>"><%= latestPosts[i].title %></a></li>
+      <% } %>
+        <li><a href="http://codefishandchips.tumblr.com">My Blog</a></li>
+      </ul>
     </p>
     <p>
       Talk soon,<br>
